@@ -1,0 +1,45 @@
+CREATE DATABASE iteração3;
+
+USE iteração3;
+
+CREATE TABLE Usuarios(
+
+id INT NOT NULL,
+nome VARCHAR (100) NOT NULL,
+email VARCHAR (80) NOT NULL,
+senha VARCHAR (30) NOT NULL,
+PRIMARY KEY (id)
+
+);
+
+CREATE TABLE Tarefas(
+
+  id INT NOT NULL,
+  id_usuario INT NOT NULL,
+  descrição VARCHAR(80) NOT NULL,
+  realizada BOOLEAN NOT NULL,
+ PRIMARY KEY (id),
+ FOREIGN KEY (id_usuario) REFERENCES Usuarios(id)
+  );
+  
+  INSERT INTO Usuarios (id, nome, email, senha)
+  VALUES  (1, 'José Antonío ', 'josé@email.com', PASSWORD("joao#si"));
+  
+  INSERT INTO Usuarios (id, nome, email, senha)
+  VALUES (2, 'Beatriz Almeida', 'bia@gmail.com', PASSWORD('sucotang'));
+  
+  SELECT * FROM Usuarios; 
+  
+   INSERT INTO Tarefas (id, id_usuario, descrição, realizada)
+  Values (1, 1, 'comprar borracha', true);
+ 
+  INSERT into Tarefas (id, id_usuario, descrição, realizada)
+  Values (2, 1, 'Limpar quarto', false);
+
+  INSERT into Tarefas (id, id_usuario, descrição, realizada)
+  Values (3, 2, 'Fazer atividade física', true);
+
+  INSERT into Tarefas (id, id_usuario, descrição, realizada)
+  Values (4, 2, 'fazer lição', false);
+  
+  SELECT * FROM Tarefas; 

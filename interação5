@@ -1,0 +1,84 @@
+ CREATE DATABASE iteração5;
+ 
+ USE iteração5;
+ 
+ CREATE TABLE Usuarios(
+
+id INT NOT NULL,
+nome VARCHAR (100) NOT NULL,
+email VARCHAR (80) NOT NULL,
+senha CHAR (60) NOT NULL,
+codigo_verificador CHAR (36) NOT NULL,
+verificado BOOL NOT NULL,
+data_cadastro DATETIME NOT NULL,
+PRIMARY KEY (id)
+
+);
+
+CREATE TABLE Tarefas(
+
+  id INT NOT NULL,
+  id_usuario INT NOT NULL,
+  descrição VARCHAR(80) NOT NULL,
+  realizada BOOLEAN NOT NULL,
+ PRIMARY KEY (id),
+ FOREIGN KEY (id_usuario) REFERENCES Usuarios(id)
+  );
+  
+
+  INSERT INTO Usuarios 
+  VALUES  (1, 'José Antonio', 'jose@email.com', '$2a$12$MjrDrnqywmm5JSIPJhwJiO2AGzO9TmYjUGEBQsnvnIHXI5tuPNyT6', 'f82b1828-671a-495e-9d10-da03ba94d8aa', false, '23-03-20 22:30:15');
+  
+  INSERT INTO Usuarios
+  VALUES (2, 'Beatriz Almeida', 'bia@gmail.com', '$2a$12$fChIc7C/BhHfy3LZ7teTtOjaJsBw7nXe/4QMM8z1VANH8Nmm83.Zu', 'abec8156-9df3-455d-b714-dc13e60f66d8', false, '23-03-22 14:40:35');
+  
+  SELECT email, senha, verificado FROM Usuarios; 
+  
+  UPDATE Usuarios
+  SET verificado = true
+  WHERE id = 1;
+
+  UPDATE Usuarios
+  SET verificado = true
+  WHERE id = 2;
+
+  SELECT id, email, senha, verificado FROM Usuarios; 
+  
+   INSERT INTO Tarefas 
+  Values (1, 1, 'comprar borracha', true);
+ 
+  INSERT into Tarefas 
+  Values (2, 1, 'Limpar quarto', false);
+
+  INSERT into Tarefas 
+  Values (3, 2, 'Fazer atividade física', true);
+
+  INSERT into Tarefas 
+  Values (4, 2, 'fazer lição', false);
+  
+  SELECT * FROM Tarefas; 
+  
+   CREATE TABLE Recuperar(
+
+id INT NOT NULL,
+id_usuario INT NOT NULL,
+email VARCHAR (80) NOT NULL,
+codigo_verificação CHAR (36) NOT NULL,
+nova_senha CHAR (60) NOT NULL,
+redefinido BOOL NOT NULL,
+data_redefinição DATETIME NOT NULL,
+PRIMARY KEY (id), 
+FOREIGN KEY (id_usuario) REFERENCES Usuarios(id)
+); 
+
+INSERT INTO Recuperar
+VALUES (1, 1, 'jose@email.com', '5be18ab6-4c7a-4593-bd0f-662bec841d2d', '$2a$12$jgylt3n0OXkphTslac7RPuE3rAnKplwNCL6fTGx31AyvUTpnSoizW', false, '23-03-26 22:00:10');
+
+SELECT id, id_usuario, email, redefinido FROM Recuperar;
+
+UPDATE Recuperar
+SET redefinido = true
+WHERE id_usuario = 1;
+
+SELECT id_usuario, email, redefinido FROM Recuperar;
+  
