@@ -37,16 +37,16 @@ public class Conta {
         }
     }
 
-    // Testes de unidade
+// TEST
     public static void main(String[] args) {
         Conta conta1 = new Conta(1, "Correntista 1");
         Conta conta2 = new Conta(2, "Correntista 2");
 
-        conta1.depositar(100.0); // Saldo: 100.0
-        conta1.sacar(50.0); // Saldo: 50.0
+        conta1.depositar(100.0); 
+        conta1.sacar(50.0); 
 
-        conta2.depositar(200.0); // Saldo: 200.0
-        conta2.transferir(100.0, conta1); // Saldo conta1: 150.0, saldo conta2: 100.0
-        conta2.transferir(150.0, conta1); // Saldo insuficiente para realizar a transferência
+        conta2.depositar(200.0); 
+        conta2.transferir(100.0, conta1);
+        conta2.transferir(150.0, conta1); 
     }
 }
